@@ -25,4 +25,9 @@ func main() {
 		log.Printf("error: %v", err)
 		os.Exit(1)
 	}
+	go func() {
+		<-ctx.Done()
+		_, cancel := context.WithCancel(context.Background())
+		defer cancel()
+	}()
 }
