@@ -1,0 +1,26 @@
+version: '3'
+services:
+  localstack:
+    container_name: "localstack"
+    image: localstack/localstack
+    ports:
+      - "127.0.0.1:4566:4566"
+      - "127.0.0.1:4510-4559:4510-4559"
+    environment:
+      - DEBUG=${DEBUG-}
+      - DOCKER_HOST=unix:///var/run/docker.sock
+      - DISABLE_CORS_CHECKS=1
+    volumes:
+      - "./localstack/init/ready.d:/etc/localstack/init/ready.d"
+      - "./localstack/config:/etc/localstack/config"
+      - "${LOCALSTACK_VOLUME_DIR:-./volume}:/var/lib/localstack"
+      - "/var/run/docker.sock:/var/run/docker.sock"
+    restart: always
+
+networks:
+  app_net:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.10.0.0/24
