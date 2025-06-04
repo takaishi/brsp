@@ -4,7 +4,7 @@ go 1.22.3
 
 require (
 	github.com/alecthomas/kong v0.9.0
-	github.com/aws/aws-sdk-go v1.55.6
+	github.com/aws/aws-sdk-go v1.55.7
 	github.com/aws/aws-sdk-go-v2 v1.36.3
 	github.com/aws/aws-sdk-go-v2/config v1.29.13
 	github.com/aws/aws-sdk-go-v2/service/kms v1.38.2
